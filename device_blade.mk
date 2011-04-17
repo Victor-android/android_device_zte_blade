@@ -116,7 +116,7 @@ PRODUCT_COPY_FILES += \
 
 # LOGO
 PRODUCT_COPY_FILES += \
-    device/zte/raise/ramdisk/initlogo.rle:root/initlogo.rle
+    device/zte/blade/ramdisk/initlogo.rle:root/initlogo.rle
 
 #Kernel Modules
 PRODUCT_COPY_FILES += \
