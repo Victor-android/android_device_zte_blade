@@ -1,0 +1,237 @@
+#!/system/bin/sh
+# By Genokolar 2011/02/07
+
+
+mount -o remount rw /system
+
+# log.txt auto delete
+logsize=`busybox du -k /system/log.txt |busybox cut -f1`
+if [ $logsize -gt 50 ]
+then
+busybox rm -f /system/log.txt
+fi
+
+
+# start log
+echo "============================================" >> /system/log.txt
+echo `busybox date +%F" "%T` Boot X876 ... >> /system/log.txt
+
+
+# permission
+chmod 750 /sbin/gk/1-app2sd.sh
+chmod 750 /sbin/gk/2-data2ext.sh
+chmod 750 /sbin/gk/3-swap.sh
+chmod 750 /sbin/gk/4-optimize.sh
+chmod 750 /sbin/gk/5-backup.sh
+chmod 750 /sbin/gk/6-restore.sh
+
+
+#first mount app2sd
+if [ -e /dev/block/mmcblk0p2 -a ! -e /system/etc/.nomount ]
+then
+mount -t ext4 /dev/block/mmcblk0p2 /sd-ext
+busybox touch /sd-ext/test
+  ## Test SD-EXT
+  if [ ! -e /sd-ext/test ]
+  then
+  busybox touch /system/etc/.nomount
+  fi
+  if [ -d /system/etc/app2sd-on -a -e /sd-ext/test ]
+  then
+  busybox rm -rf /data/app
+  busybox ln -s /sd-ext/app /data/app
+  echo Open APP2SD success... >> /system/log.txt
+  busybox mv /system/etc/app2sd-on /system/etc/app2sd-run
+  fi
+else
+echo Close SD-EXT Mount and Enhanced >> /system/log.txt
+fi
+
+
+# first mount data2ext
+if [ -d /system/etc/data2ext-on -a -e /sd-ext/test ]
+then
+  busybox rm -rf /data/data
+  busybox ln -s /sd-ext/data /data/data
+  busybox rm -rf /data/system
+  busybox ln -s /sd-ext/system /data/system
+  echo Open DATA2EXT success... >> /system/log.txt
+  busybox mv /system/etc/data2ext-on /system/etc/data2ext-run
+fi
+
+
+# app2sd run of false
+if [ -d /system/etc/app2sd-run ]
+then
+  if [ ! -e /dev/block/mmcblk0p2 -o ! -e /sd-ext/test ]
+  then 
+  busybox rm /data/app
+  busybox mkdir /data/app
+    if [ ! -d /system/etc/data2ext-run ]
+    then
+    busybox rm -rf /data/databak
+    busybox mv /data/data /data/databak
+    busybox mkdir /data/data
+    busybox rm -rf /data/systembak
+    busybox mv /data/system /data/systembak
+    busybox mkdir /data/system
+    echo SDcard \mount flase... >> /system/log.txt
+    else
+    busybox mkdir /data/databak
+    busybox mkdir /data/systembak
+    fi
+  busybox mv /system/etc/app2sd-run /system/etc/app2sd-false
+  fi
+echo APP2SD is OK... >> /system/log.txt
+fi
+
+
+# data2ext run of false
+if [ -d /system/etc/data2ext-run ]
+then
+  if [ ! -e /dev/block/mmcblk0p2 -o ! -e /sd-ext/test ]
+  then
+  busybox rm -rf /data/data
+  busybox mkdir /data/data
+  busybox rm -rf /data/system
+  busybox mkdir /data/system
+  echo SDcard \mount flase... >> /system/log.txt
+  busybox mv /system/etc/data2ext-run /system/etc/data2ext-false
+  fi
+  echo DATA2EXT is OK... >> /system/log.txt
+fi
+
+
+# app2sd off
+if [ -d /system/etc/app2sd-off ]
+then
+  if [ -e /dev/block/mmcblk0p2 ]
+  then
+  busybox rm /data/app
+  busybox mv /data/appbak /data/app
+  echo Close APP2SD success... >> /system/log.txt
+  busybox rm -rf /system/etc/app2sd-off
+  fi
+fi
+
+
+# data2ext off
+if [ -d /system/etc/data2ext-off ]
+then
+  if [ -e /dev/block/mmcblk0p2 ]
+  then
+  busybox rm /data/data
+  busybox mv /data/databak /data/data
+  busybox rm /data/system
+  busybox mv /data/systembak /data/system
+  echo Close DATA2EXT success... >> /system/log.txt
+  busybox rm -rf /system/etc/data2ext-off
+  fi
+fi
+
+
+# app2sd retry
+if [ -d /system/etc/app2sd-retry ]
+then
+  if [ -e /dev/block/mmcblk0p2 -a -e /sd-ext/test ]
+  then
+    if [ ! -d /system/etc/data2ext-run ]
+    then
+    busybox rm -rf /data/data
+    busybox mv /data/databak /data/data
+    busybox rm -rf /data/system
+    busybox mv /data/systembak /data/system
+    fi
+  busybox rm -rf /data/app
+  busybox ln -s /sd-ext/app /data/app
+  echo Retry APP2SD success... >> /system/log.txt
+  busybox mv /system/etc/app2sd-retry /system/etc/app2sd-run
+  fi
+fi
+
+
+# data2ext retry
+if [ -d /system/etc/data2ext-retry -a -e /sd-ext/test ]
+then
+  if [ -e /dev/block/mmcblk0p2 ]
+  then
+  busybox rm -rf /data/data
+  busybox ln -s /sd-ext/data /data/data
+  busybox rm -rf /data/system
+  busybox ln -s /sd-ext/system /data/system
+  echo Retry Data2EXT success... >> /system/log.txt
+  busybox mv /system/etc/data2ext-retry /system/etc/data2ext-run
+  fi
+fi
+
+
+# swap
+if [ -d /system/etc/swap-run ]
+then
+  if [ -e /dev/block/mmcblk0p3 ]
+  then
+  busybox swapon /dev/block/mmcblk0p3
+  echo Open SWAP with Partition... >> /system/log.txt
+  else
+    if [ -e /system/etc/enhanced.conf ]
+    then
+    SWAPADD=`busybox grep SWAPADD /system/etc/enhanced.conf |busybox cut -d= -f2 `
+    SWAPPINESS=`busybox grep SWAPPINESS /system/etc/enhanced.conf |busybox cut -d= -f2 `
+    else
+    SWAPADD="/sd-ext"
+    SWAPPINESS="35"
+    fi
+    if [ -e $SWAPADD/swap.file ]
+    then
+    busybox mkswap $SWAPADD/swap.file
+    busybox swapon $SWAPADD/swap.file
+    busybox sysctl -w vm.swappiness=$SWAPPINESS
+    echo Open SWAP with Files... >> /system/log.txt
+    fi
+  fi
+fi
+
+# Cpu freq
+if [ -e /system/etc/enhanced.conf ]
+then
+GOVERNOR=`busybox grep GOVERNOR /system/etc/enhanced.conf |busybox cut -d= -f2 `
+echo $GOVERNOR > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+echo scaling governor $GOVERNOR... >> /system/log.txt
+fi
+
+if [ -e /system/etc/enhanced.conf -a ! -e /system/etc/cpufreqing ]
+then
+MINFREQ=`busybox grep MINFREQ /system/etc/enhanced.conf |busybox cut -d= -f2 `
+MAXFREQ=`busybox grep MAXFREQ /system/etc/enhanced.conf |busybox cut -d= -f2 `
+for CPUFREQ in 122880 201600 245760 320000 403200 480000 604800 614400 633600 652800 691200 710400 729600 748800 768000
+do
+   ## Cpu min frequency
+   if [ $MINFREQ = $CPUFREQ -a $MINFREQ -lt $MAXFREQ ]
+   then
+   echo $MINFREQ > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+   busybox touch /system/etc/cpufreqing
+   echo cpu minfreq $MINFREQ... >> /system/log.txt
+   fi
+   ## Cpu max frequency
+   if [ $MAXFREQ = $CPUFREQ -a $MINFREQ -lt $MAXFREQ ]
+   then
+   echo $MAXFREQ > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+   busybox touch /system/etc/cpufreqing
+   echo cpu maxfreq $MAXFREQ... >> /system/log.txt
+   fi
+done
+fi
+
+
+# flash recovery.img
+if [ -e /system/recovery.img ]
+then
+echo `busybox date +%F" "%T` Flash Recovery ... >> /system/log.txt
+flash_image recovery /system/recovery.img >>/system/log.txt
+busybox rm -f /system/recovery.img
+fi
+
+busybox rm -f /sd-ext/test
+
+echo "============================================" >> /system/log.txt
+exit

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mobilization>
+    <mobilization id="CHINA MOBILE">中国移动</mobilization>
+    <mobilization id="China Unicom">中国联通</mobilization>
+    <mobilization id="CHN-UNICOM">中国联通</mobilization>
+    <mobilization id="China Telecom">中国电信</mobilization>
+    <mobilization id="CMCC">中国移动</mobilization>
+    <mobilization id="Taiwan Mobile Co. Ltd">台湾大哥大</mobilization>
+    <mobilization id="TW Mobile">台湾大哥大</mobilization>
+</mobilization>

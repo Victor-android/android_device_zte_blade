@@ -1,0 +1,24 @@
+#!/system/bin/sh
+# By Genokolar 2011/02/07
+
+# recovery / backup / optimize / app2sd / data2ext timing
+sleep 60
+busybox rm -f /system/etc/closeswap
+busybox rm -f /system/etc/restorying
+busybox rm -f /system/etc/backuping
+busybox rm -f /sd-ext/app/.first
+busybox rm -f /sd-ext/data/.first
+busybox rm -f /system/etc/cpufreqing
+if [ -e /system/etc/delodex ]
+then
+busybox rm -rf /system/app/*.odex
+busybox rm -f /system/etc/delodex
+echo `busybox date +%F" "%T` Del system odex... >> /system/log.txt
+sync
+reboot
+fi
+if [ -e /system/etc/cpufreqing ]
+then
+busybox rm -f /system/etc/cpufreqing
+fi
+exit
