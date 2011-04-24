@@ -46,7 +46,7 @@
     <string name="tablet_tweaks_sb_bottom_title">底部状态栏</string>
     <string name="tablet_tweaks_sb_bottom_summary">将状态栏显示在底部，适用于在状态栏拥有小房子,菜单等键的平板</string>
     <string name="tablet_tweaks_status_bar_dead_zone_title">盲区</string>
-    <string name="tablet_tweaks_status_bar_dead_zone_summary">在状态栏的中部添加一个半屏宽度的盲区</string>
+    <string name="tablet_tweaks_status_bar_dead_zone_summary">Add a dead zone of half screen width to the middle of the status bar</string>
     <string name="tablet_tweaks_soft_buttons_left_title">左置软按键</string>
     <string name="tablet_tweaks_soft_buttons_left_summary">把软按键放置在状态栏的左边</string>
     <string name="tablet_tweaks_soft_button_list_title">选择软按键</string>
@@ -94,7 +94,8 @@
     <string name="ui_status_bar_clock_summary">如果禁用，状态栏中的时钟将不会显示</string>
     <string name="ui_status_bar_cm_battery_title">电量百分比</string>
     <string name="ui_status_bar_cm_battery_summary">在小电池图标上显示电量百分比。如果主题破坏了外观则禁用它</string>
-
+    <string name="ui_status_bar_compact_carrier_title">紧凑标签</string>
+<string name="ui_status_bar_compact_carrier_summary">在通知栏下拉布局中使用小标签，这样电源控件看起来更好. (需要重启)</string>
     <!-- User interface : LED Notifications -->
     <string name="trackball_title">LED 通知</string>
     <string name="trackball_summary">控制轨迹球和 LED 通知的颜色和闪烁频率</string>
@@ -373,6 +374,8 @@
     <string name="summary_expanded_widget">使用扩展视图的电源控件</string>
     <string name="title_expanded_hide_onchange">更改时隐藏</string>
     <string name="summary_expanded_hide_onchange">在切换控件按键后隐藏下拉通知栏</string>
+	<string name="title_expanded_hide_scrollbar">隐藏滚动条</string>
+    <string name="summary_expanded_hide_scrollbar">当控件数量大于可显示数量时隐藏滚动条.</string>
     <string name="expanded_color_mask">指示灯颜色</string>
     <string name="title_widget_picker">控制按钮</string>
     <string name="summary_widget_picker">选取您需要的控件按键</string>
@@ -457,6 +460,9 @@
     <string name="sound_notifications_focus_summary">向兼容此功能的程序发送声音切入请求，使其降低音量以便突出播放要切入的声音事件。</string>
     <string name="sound_volume_control_silent_title">静音状态</string>
     <string name="sound_volume_control_silent_summary">添加完整的静音控制状态</string>
+	<string name="sound_vibrate_in_call_title">通话中震动</string>
+    <string name="sound_vibrate_in_call_summary_off">在通话过程中有通知将不振动</string>
+    <string name="sound_vibrate_in_call_summary_on">在通话过程中有通知将照常振动</string>
     <string name="sound_to_speaker_title">总是通过扬声器播放</string>
     <string name="sound_notifications_title">通知</string>
     <string name="sound_rings_title">铃声</string>

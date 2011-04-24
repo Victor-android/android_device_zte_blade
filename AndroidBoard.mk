@@ -19,9 +19,17 @@ LOCAL_PATH := device/zte/blade/
 #
 #ifeq ($(TARGET_PREBUILT_KERNEL),)
 ifeq ($(TARGET_BLADE_BOARD_NAME),gen2)
+ifeq ($(KERNEL_USE_KK),true)
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel_gen2
 else
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel_gen2_cm
+endif
+else
+ifeq ($(KERNEL_USE_KK),true)
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel_gen1
+else
+TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel_gen1_cm
+endif
 endif
 #endif
 
