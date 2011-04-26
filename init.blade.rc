@@ -144,6 +144,15 @@ service dhcpcd /system/bin/dhcpcd wlan0 -BKL
 service akmd /system/bin/akmd2
     oneshot
 
+#ZTE_WANGZY_PROXIMITY_101014
+service proximity_init /system/bin/proximity.init -r
+    disabled
+    oneshot
+    
+on property:dev.bootdone=1
+    start proximity_init
+#ZTE_WANGZY_PROXIMITY_101014
+
 #by geno
 service geno /sbin/geno
     oneshot

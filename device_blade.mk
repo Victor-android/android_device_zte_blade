@@ -94,6 +94,7 @@ PRODUCT_COPY_FILES += \
 #system patch
 PRODUCT_COPY_FILES += \
     device/zte/blade/system/bin/dexopt-wrapper:system/bin/dexopt-wrapper \
+    device/zte/blade/system/bin/proximity.init:system/bin/proximity.init \
     device/zte/blade/system/app/RootExplorer.apk:system/app/RootExplorer.apk \
     device/zte/blade/system/app/SystemInfoPro.apk:system/app/SystemInfoPro.apk \
     device/zte/blade/system/etc/apns-conf.xml:system/etc/apns-conf.xml \
