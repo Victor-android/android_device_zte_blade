@@ -129,7 +129,7 @@ service wpa_supplicant /system/bin/wpa_supplicant -Dawext -iwlan0 -W -c/data/mis
     disabled
     oneshot
 
-service dhcpcd /system/bin/dhcpcd wlan0 -BKL
+service dhcpcd_wlan0 /system/bin/dhcpcd -BKL
     disabled
     oneshot
 
