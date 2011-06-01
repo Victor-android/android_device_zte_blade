@@ -46,7 +46,7 @@
     <string name="tablet_tweaks_sb_bottom_title">底部状态栏</string>
     <string name="tablet_tweaks_sb_bottom_summary">将状态栏显示在底部，适用于在状态栏拥有小房子,菜单等键的平板</string>
     <string name="tablet_tweaks_status_bar_dead_zone_title">盲区</string>
-    <string name="tablet_tweaks_status_bar_dead_zone_summary">Add a dead zone of half screen width to the middle of the status bar</string>
+    <string name="tablet_tweaks_status_bar_dead_zone_summary">在状态栏的中部添加一个半屏宽度的盲区</string>
     <string name="tablet_tweaks_soft_buttons_left_title">左置软按键</string>
     <string name="tablet_tweaks_soft_buttons_left_summary">把软按键放置在状态栏的左边</string>
     <string name="tablet_tweaks_soft_button_list_title">选择软按键</string>
@@ -90,12 +90,16 @@
 
     <!-- User interface: Status bar tweaks -->
     <string name="ui_status_bar_title">状态栏调整</string>
+    <string name="ui_status_bar_am_pm_title">AM/PM样式</string>
+    <string name="ui_status_bar_am_pm_summary">选择AM/PM时钟的样式</string>
     <string name="ui_status_bar_clock_title">显示时钟</string>
     <string name="ui_status_bar_clock_summary">如果禁用，状态栏中的时钟将不会显示</string>
     <string name="ui_status_bar_cm_battery_title">电量百分比</string>
     <string name="ui_status_bar_cm_battery_summary">在小电池图标上显示电量百分比。如果主题破坏了外观则禁用它</string>
-    <string name="ui_status_bar_compact_carrier_title">紧凑标签</string>
-<string name="ui_status_bar_compact_carrier_summary">在通知栏下拉布局中使用小标签，这样电源控件看起来更好. (需要重启)</string>
+    <string name="ui_status_bar_compact_carrier_title">缩小显示运营商</string>
+    <string name="ui_status_bar_compact_carrier_summary">在通知栏下拉布局中缩小显示运营商，这样电源控件看起来更好.</string>
+    <string name="ui_status_bar_toggle_brightness">通知栏亮度控制</string>
+    <string name="ui_status_bar_toggle_brightness_summary">允许在通知栏上滑动来调整亮度</string>
     <!-- User interface : LED Notifications -->
     <string name="trackball_title">LED 通知</string>
     <string name="trackball_summary">控制轨迹球和 LED 通知的颜色和闪烁频率</string>
@@ -119,7 +123,8 @@
     <string name="pref_lockscreen_screenoff_lock_delay">屏幕手动关闭时的延迟</string>
     <string name="pref_lockscreen_timeout_lock_delay_summary">当屏幕超时自动休眠时，延迟多长时间后启用锁屏</string>
     <string name="pref_lockscreen_screenoff_lock_delay_summary">当手动关闭屏幕时，延迟多长时间后启用锁屏</string>
-
+    <string name="pref_in_call_style_title">来电样式</string>
+    <string name="pref_in_call_style_summary">选择喜欢的来电接受/拒绝的部件样式</string>
     <!-- Color Picker -->
     <string name="title_color_picker">选择颜色</string>
     <string name="msg_color_picker">点击中间的颜色进行确认。\n点击返回键取消。</string>
@@ -200,6 +205,8 @@
     <string name="pref_trackball_wake_summary">按下轨迹球可唤醒设备</string>
     <string name="pref_trackball_unlock_title">轨迹球解锁</string>
     <string name="pref_trackball_unlock_summary">按下轨迹球可解锁设备</string>
+    <string name="pref_volume_wake_title">音量键唤醒</string>
+    <string name="pref_volume_wake_summary">按下音量上/下键唤醒设备. 用于电源键不便使用的设备</string>
     <string name="pref_menu_unlock_title">菜单键解锁</string>
     <string name="pref_menu_unlock_summary">按下菜单键可解锁设备</string>
     <string name="pref_lockscreen_quick_unlock_control_title">快速解锁</string>
@@ -374,7 +381,9 @@
     <string name="summary_expanded_widget">使用扩展视图的电源控件</string>
     <string name="title_expanded_hide_onchange">更改时隐藏</string>
     <string name="summary_expanded_hide_onchange">在切换控件按键后隐藏下拉通知栏</string>
-	<string name="title_expanded_hide_scrollbar">隐藏滚动条</string>
+    <string name="title_expanded_hide_indicator">隐藏指示器</string>
+    <string name="summary_expanded_hide_indicator">隐藏通知栏控件指示器</string>
+    <string name="title_expanded_hide_scrollbar">隐藏滚动条</string>
     <string name="summary_expanded_hide_scrollbar">当控件数量大于可显示数量时隐藏滚动条.</string>
     <string name="expanded_color_mask">指示灯颜色</string>
     <string name="title_widget_picker">控制按钮</string>
@@ -600,4 +609,10 @@
     <string name="cpu_max_freq_summary">最大 CPU 频率\n当前：%s</string>
     <string name="cpu_set_on_boot">启动时设置</string>
     <string name="cpu_set_on_boot_summary">在启动时恢复 CPU 设置</string>
+
+    <!-- Permissions Management Settings strings -->
+    <string name="perm_enable_management">权限管理</string>
+    <string name="perm_enable_management_summary">开启应用到权限管理功能</string>
+    <string name="perm_enable_warning_message">警告!\n撤销大多数权限将有可能导致应用程序出现故障。如果具有撤销权限强制关闭应用程序，请给予预期的权限或不使用该应用程序。请不要发送错误报告给Cyanogenmod如果具有撤销权限的应用程序不按预期工作！</string>
+    <string name="perm_enable_warning_title">请确认?</string>
 </resources>

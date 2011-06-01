@@ -36,6 +36,12 @@
         <item>SD 卡</item>
     </string-array>
 
+    <string-array name="entries_status_bar_am_pm">
+        <item>普通</item>
+        <item>较小</item>
+        <item>无(默认)</item>
+    </string-array>
+
     <string-array name="entries_render_effect">
         <item>无渲染效果</item>
         <item>夜间模式 (红色)</item>
@@ -77,18 +83,18 @@
     </string-array>
 
     <string-array name="pref_trackball_colors_values" translatable="false">
-        <item>green</item>
-        <item>white</item>
-        <item>red</item>
-        <item>blue</item>
-        <item>yellow</item>
-        <item>cyan</item>
-        <item>#800080</item>
-        <item>#ffc0cb</item>
-        <item>#ffa500</item>
-        <item>#add8e6</item>
-        <item>random</item>
-        <item>none</item>
+        <item>绿色</item>
+        <item>白色</item>
+        <item>红色</item>
+        <item>蓝色</item>
+        <item>黄色</item>
+        <item>蓝绿色</item>
+	<item>紫色</item>
+        <item>粉色</item>
+        <item>橙色</item>
+        <item>浅蓝色</item>
+        <item>随机</item>
+        <item>无</item>
     </string-array>
 
     <string-array name="pref_trackball_blink_rate_entries">
@@ -194,7 +200,96 @@
         <item>衰减后的系统设置</item>
         <item>音乐音量 (默认)</item>
     </string-array>
-	
+   <!-- skipping untranslatable /resources:0/string-array:name=values_sound_limitvol -->
+
+   <string-array name="entries_brightness_widget" formatted="false">
+        <item>自动/暗淡/40%/100%</item>
+        <item>自动/暗淡/25%/50%/75%/100%</item>
+        <item>自动/25%/100%</item>
+        <item>暗淡/100%</item>
+    </string-array>
+
+   <!-- skipping untranslatable /resources:0/string-array:name=values_brightness_widget -->
+
+    <string-array name="entries_network_widget">
+        <item>2G／3G＋2G</item>
+        <item>2G／仅3G</item>
+        <item>2G／仅3G／3G＋2G</item>
+    </string-array>
+
+    <!-- skipping untranslatable /resources:0/string-array:name=values_network_widget -->
+
+    <string-array name="entries_screentimeout_widget">
+        <item>15秒／1分钟／5分钟</item>
+        <item>30秒／2分钟／5分钟</item>
+    </string-array>
+
+    <!-- skipping untranslatable /resources:0/string-array:name=values_screentimeout_widget -->
+
+    <string-array name="entries_ring_widget">
+        <item>声音＋震动／仅震动</item>
+        <item>仅声音／仅震动</item>
+        <item>仅声音／靜音</item>
+        <item>声音＋震动／仅震动／靜音</item>
+        <item>仅声音／仅震动／靜音</item>
+        <item>声音＋震动／仅声音／仅震动／靜音</item>
+    </string-array>
+
+    <!-- skipping untranslatable /resources:0/string-array:name=values_ring_widget -->
+
+    <string-array name="entries_flash_widget">
+        <item>正常</item>
+        <item>强光</item>
+    </string-array>
+
+    <!-- skipping untranslatable /resources:0/string-array:name=values_flash_widget -->
+
+    <string-array name="pref_lockscreen_gestures_sensitivity_entries">
+        <item>1（最宽松）</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12（最严格）</item>
+    </string-array>
+
+    <!-- skipping untranslatable /resources:0/string-array:name=pref_lockscreen_gestures_sensitivity_values -->
+
+    <string-array name="pref_lockscreen_style_entries">
+        <item>滑动</item>
+        <item>拨轮</item>
+        <item>拨轮（改）</item>
+        <item>透明板</item>
+    </string-array>
+
+    <string-array name="pref_in_call_style_entries">
+        <item>滑动</item>
+        <item>拨轮</item>
+        <item>拨轮（改）</item>
+    </string-array>
+    <!-- skipping untranslatable /resources:0/string-array:name=pref_lockscreen_style_values -->
+
+    <string-array name="pref_lockscreen_music_headset_entries">
+        <item>不显示</item>
+        <item>有线耳机</item>
+        <item>蓝牙耳机</item>
+        <item>均显示</item>
+    </string-array>
+
+    <!-- skipping untranslatable /resources:0/string-array:name=pref_lockscreen_music_headset_values -->
+
+    <string-array name="pref_overscroll_effect_entries">
+        <item>无</item>
+        <item>边缘发亮</item>
+        <item>反弹并发亮</item>
+        <item>反弹</item>
+    </string-array>	
 	<string-array name="entries_overscroll_weight">
         <item>加大</item>
         <item>大</item>

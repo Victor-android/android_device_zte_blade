@@ -1,11 +1,22 @@
 #!/system/bin/sh
 # By Genokolar 2011/02/07
-# MOUNT SD-EXT
-if [ -e /dev/block/mmcblk0p2 -a -e /system/etc/.nomount ]
+
+# read conf
+if [ -e /system/etc/enhanced.conf ]
 then
-mount -t ext4 /dev/block/mmcblk0p2 /sd-ext
+SDEXT=`busybox grep SDEXT /system/etc/enhanced.conf |busybox cut -d= -f2 `
+SDSWAP=`busybox grep SDSWAP /system/etc/enhanced.conf |busybox cut -d= -f2 `
+else
+SDEXT="mmcblk0p2"
+SDSWAP="mmcblk0p3"
+fi
+
+# MOUNT SD-EXT
+if [ -e /dev/block/$SDEXT -a -e /system/etc/.nomount ]
+then
+mount -t ext4 /dev/block/$SDEXT /sd-ext
 busybox touch /sd-ext/test
-if [ -e /sd-ext/test ]
+if [ -s /sd-ext ]
 then
 busybox rm -f /system/etc/.nomount
 busybox rm -f /sd-ext/test
@@ -15,11 +26,14 @@ exit
 fi
 fi
 
+# sd-ext is mount
+if [ -s /sd-ext ]
+then
 
 # data2ext first
-if [ ! -d /etc/data2ext-run -a ! -d /etc/data2ext-off -a ! -d /etc/data2ext-false -a ! -d /etc/data2ext-retry ]
+if [ ! -h /data/data -a ! -h /data/system -a ! -d /etc/data2ext-off -a ! -d /etc/data2ext-false -a ! -d /etc/data2ext-retry ]
 then 
-  if [ -e /dev/block/mmcblk0p2 ]
+  if [ -e /dev/block/$SDEXT ]
   then
     ## if exist data2ext
     if [ -d /sd-ext/data -a -d /sd-ext/system -a ! -e /sd-ext/*.backup ]
@@ -67,15 +81,20 @@ then
   fi
 fi
 
+# data2ext fix
+if [ -h /data/data -a -h /data/system -a ! -d /etc/data2ext-run ]
+then
+busybox mkdir /system/etc/data2ext-run
+fi
 
 # data2ext off
-if [ -d /etc/data2ext-run ]
+if [ -h /data/data -a -h /data/system -a -d /etc/data2ext-run ]
 then 
   if [ -d /sd-ext/data ]
   then
-  baksize=`busybox du -sm /sd-ext/data |busybox cut -f1`
-  datadir=`busybox du -sm /data |busybox cut -f1`
-  datasize=$((178-datadir))
+  baksize=`busybox du -smx /sd-ext/data |busybox cut -f1`
+  datadir=`busybox du -smx /data |busybox cut -f1`
+  datasize=$((570-datadir))
     if [ $baksize -lt $datasize ]
     then
     busybox cp -rp /sd-ext/data /data/databak
@@ -90,11 +109,10 @@ then
   fi
 fi
 
-
 # data2ext retry
 if [ -d /etc/data2ext-false ]
 then 
-  if [ -e /dev/block/mmcblk0p2 ]
+  if [ -e /dev/block/$SDEXT ]
   then
   echo `busybox date +%F" "%T` Retry DATA2EXT... >> /system/log.txt
   busybox mv /system/etc/data2ext-false /system/etc/data2ext-retry
@@ -103,4 +121,7 @@ then
   fi
 fi
 
+else
+echo SD-EXT分区没有正确挂载，请先正确挂载SD-EXT分区
+fi
 exit

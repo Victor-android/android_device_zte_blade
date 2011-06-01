@@ -31,7 +31,7 @@ DEVICE_PACKAGE_OVERLAYS := device/zte/blade/overlay
 PRODUCT_NAME := zte_blade
 PRODUCT_DEVICE := blade
 PRODUCT_MODEL := ZTE Blade
-PRODUCT_LOCALES := zh_CN en_US
+PRODUCT_LOCALES := zh_CN zh_TW en_US
 
 PRODUCT_PACKAGES += \
     LiveWallpapers \
@@ -94,7 +94,6 @@ PRODUCT_COPY_FILES += \
 #system patch
 PRODUCT_COPY_FILES += \
     device/zte/blade/system/bin/dexopt-wrapper:system/bin/dexopt-wrapper \
-    device/zte/blade/system/bin/proximity.init:system/bin/proximity.init \
     device/zte/blade/system/app/RootExplorer.apk:system/app/RootExplorer.apk \
     device/zte/blade/system/app/SystemInfoPro.apk:system/app/SystemInfoPro.apk \
     device/zte/blade/system/etc/apns-conf.xml:system/etc/apns-conf.xml \

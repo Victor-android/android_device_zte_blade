@@ -33,7 +33,7 @@ systemodex=`ls /system/app/*.odex`
   do
     if [ ! -e ${remodex%odex}apk ]
     then
-    usybox rm -r $remodex
+    busybox rm -r $remodex
     fi
   done
 

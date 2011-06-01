@@ -5,7 +5,11 @@
 if [ -e /system/etc/enhanced.conf ]
 then
 BACKUPMODE=`busybox grep BACKUPMODE /system/etc/enhanced.conf |busybox cut -d= -f2 `
+SDEXT=`busybox grep SDEXT /system/etc/enhanced.conf |busybox cut -d= -f2 `
+SDSWAP=`busybox grep SDSWAP /system/etc/enhanced.conf |busybox cut -d= -f2 `
 else
+SDEXT="mmcblk0p2"
+SDSWAP="mmcblk0p3"
 BACKUPMODE="1"
 fi
 
@@ -14,9 +18,9 @@ fi
 if [ $BACKUPMODE = 0 ]
 then
   ## Mount SD-EXT
-  if [ -e /dev/block/mmcblk0p2 -a -e /system/etc/.nomount ]
+  if [ -e /dev/block/$SDEXT -a -e /system/etc/.nomount ]
   then
-  mount -t ext4 /dev/block/mmcblk0p2 /sd-ext
+  mount -t ext4 /dev/block/$SDEXT /sd-ext
   busybox touch /sd-ext/test
   if [ -e /sd-ext/test ]
   then
@@ -28,7 +32,7 @@ then
   fi
   fi
   ## if data2ext on
-  if [ -d /system/etc/data2ext-run -a -e /dev/block/mmcblk0p2 -a -d /sd-ext/data -a -d /sd-ext/system ]
+  if [ -d /system/etc/data2ext-run -a -e /dev/block/$SDEXT -a -d /sd-ext/data -a -d /sd-ext/system ]
   then
     ### restore wifi data
     if [ -e /system/etc/restorying ]
@@ -50,7 +54,7 @@ then
     echo Geno：你开启了data2ext，我没有发现备份的WIFI数据，所以我什么也没干
     fi
   ## if no data2ext exist backup
-  elif [ -e /dev/block/mmcblk0p2 -a -d /sd-ext/data -a -d /sd-ext/system -a -d /sd-ext/wifi -a -e /sd-ext/*.backup ]
+  elif [ -e /dev/block/$SDEXT -a -d /sd-ext/data -a -d /sd-ext/system -a -d /sd-ext/wifi -a -e /sd-ext/*.backup ]
   then
     ### restore all data
     if [ -e /system/etc/restorying ]

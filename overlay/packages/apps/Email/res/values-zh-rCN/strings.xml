@@ -62,6 +62,11 @@
     <string name="status_network_error" msgid="6045933332005067021">"连接错误"</string>
     <string name="notification_new_title" msgid="2200257910380529139">"新电子邮件"</string>
     <string name="error_loading_message_body" msgid="2265140604109272914">"载入消息文本时出现意外错误。可能是讯息太大，无法查看。"</string>
+    <string name="confirm_on_delete_dlg_title">确认删除？</string>
+    <string name="confirm_on_delete_dlg_msg">确定想要刪除此邮件吗？</string>
+    <string name="confirm_on_send_dlg_title">发送邮件？</string>
+    <string name="confirm_on_send_dlg_msg">确定要发送此邮件吗？</string>
+
   <plurals name="notification_new_one_account_fmt">
     <item quantity="one" msgid="3422945912787702191">"<xliff:g id="UNREAD_MESSAGE_COUNT">%1$d</xliff:g> 封未读邮件 (<xliff:g id="ACCOUNT">%2$s</xliff:g>)"</item>
     <item quantity="few" msgid="6543078667692990869">"<xliff:g id="UNREAD_MESSAGE_COUNT">%1$d</xliff:g> 封未读邮件 (<xliff:g id="ACCOUNT">%2$s</xliff:g>)"</item>
@@ -245,6 +250,10 @@
     <string name="misc_settings_label">杂项</string>
     <string name="account_settings_msg_list_on_delete">返回收件箱</string>
     <string name="account_settings_msg_list_on_delete_summary">删除正在查看的邮件后返回收件箱</string>
+    <string name="account_settings_confirm_on_delete">删除前确认</string>
+    <string name="account_settings_confirm_on_delete_summary">每当你刪除邮件时均显示询问对话框</string>
+    <string name="account_settings_confirm_on_send">发送前确认</string>
+    <string name="account_settings_confirm_on_send_summary">每当你发送邮件时均显示询问对话框</string>
     <string name="account_delete_dlg_title" msgid="6806087520856396608">"删除帐户"</string>
     <string name="account_delete_dlg_instructions_fmt" msgid="8236846322040271280">"将会从电子邮件中删除“<xliff:g id="ACCOUNT">%s</xliff:g>”帐户。"</string>
     <string name="upgrade_accounts_title" msgid="5444140226380754014">"升级帐户"</string>

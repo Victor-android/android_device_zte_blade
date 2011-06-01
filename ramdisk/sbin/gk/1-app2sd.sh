@@ -1,25 +1,36 @@
 #!/system/bin/sh
 # By Genokolar 2011/02/07
 
-# MOUNT SD-EXT
-if [ -e /dev/block/mmcblk0p2 -a -e /system/etc/.nomount ]
+# read conf
+if [ -e /system/etc/enhanced.conf ]
 then
-mount -t ext4 /dev/block/mmcblk0p2 /sd-ext
-busybox touch /sd-ext/test
-if [ -e /sd-ext/test ]
+SDEXT=`busybox grep SDEXT /system/etc/enhanced.conf |busybox cut -d= -f2 `
+SDSWAP=`busybox grep SDSWAP /system/etc/enhanced.conf |busybox cut -d= -f2 `
+else
+SDEXT="mmcblk0p2"
+SDSWAP="mmcblk0p3"
+fi
+
+# MOUNT SD-EXT
+if [ -e /dev/block/$SDEXT -a -e /system/etc/.nomount ]
+then
+mount -t ext4 /dev/block/$SDEXT /sd-ext
+if [ -s /sd-ext ]
 then
 busybox rm -f /system/etc/.nomount
-busybox rm -f /sd-ext/test
 echo Mount SD-ext... >> /system/log.txt
 echo 已开启SD-EXT分区和增强功能，再运行此命令即可使用增强功能
 exit
 fi
 fi
-# app2sd first
-if [ ! -d /etc/app2sd-run -a ! -d /etc/app2sd-off -a ! -d /etc/app2sd-false -a ! -d /etc/app2sd-retry ]
+
+# sd-ext is mount
+if [ -s /sd-ext ]
 then
-  if [ -e /dev/block/mmcblk0p2 ]
-  then
+
+# app2sd first
+if [ ! -h /data/app -a ! -d /etc/app2sd-off -a ! -d /etc/app2sd-false -a ! -d /etc/app2sd-retry ]
+then
     ## if exist app
     if [ -d /sd-ext/app ]
     then
@@ -45,20 +56,22 @@ then
     fi
   sync
   reboot
-  fi
 fi
 
+# app2sd fix
+if [ -h /data/app -a ! -d /etc/app2sd-run ]
+then
+  busybox mkdir /system/etc/app2sd-run
+fi
 
 # app2sd off
-if [ -d /etc/app2sd-run ]
+if [ -h /data/app -a -d /etc/app2sd-run -a -d /sd-ext/app ]
 then 
-  if [ -d /sd-ext/app ]
+  baksize=`busybox du -smx /sd-ext/app |busybox cut -f1`
+  datadir=`busybox du -smx /data |busybox cut -f1`
+  datasize=$((180-datadir))
+  if [ $baksize -lt $datasize ]
   then
-  baksize=`busybox du -sm /sd-ext/app |busybox cut -f1`
-  datadir=`busybox du -sm /data |busybox cut -f1`
-  datasize=$((178-datadir))
-    if [ $baksize -lt $datasize ]
-    then
     busybox cp -rp /sd-ext/app /data/appbak
     echo `busybox date +%F" "%T` Close APP2SD... >> /system/log.txt
     busybox mv /system/etc/app2sd-run /system/etc/app2sd-off
@@ -66,21 +79,20 @@ then
     reboot
     else
     echo "APP2SD占用空间约为 $baksize M ,手机内部存储空间现可用为 $datasize M ，不足以关闭APP2SD，请删除部分程序后再重试关闭APP2SD"
-    fi
   fi
 fi
 
 
 # app2sd retry
-if [ -d /etc/app2sd-false ]
+if [ ! -h /data/app -a -d /etc/app2sd-false ]
 then 
-  if [ -e /dev/block/mmcblk0p2 ]
-  then
   echo `busybox date +%F" "%T` Retry APP2SD... >> /system/log.txt
   busybox mv /system/etc/app2sd-false /system/etc/app2sd-retry
   sync
   reboot
-  fi
 fi
 
+else
+echo SD-EXT分区没有正确挂载，请先正确挂载SD-EXT分区
+fi
 exit

@@ -20,18 +20,18 @@
 #include "common.h"
 #include "extendedcommands.h"
 
-char* MENU_HEADERS[] = { "Use vol keys to highlight and home to select.",
-                         "",
+char* MENU_HEADERS[] = { "",
                          NULL };
 
-char* MENU_ITEMS[] = { "reboot system now",
-                       "apply sdcard:update.zip",
-                       "wipe data/factory reset",
-                       "wipe cache partition",
-                       "install zip from sdcard",
-                       "backup and restore",
-                       "mounts and storage",
-                       "advanced",
+char* MENU_ITEMS[] = { "立即重启系统",
+                       "update.zip刷机",
+                       "清空所有数据",
+                       "清空缓存数据",
+                       "从SD卡选择刷机包",
+                       "备份还原",
+                       "U盘/格式化",
+                       "高级功能",
+                       "关闭手机",
                        NULL };
 
 int device_recovery_start() {
@@ -46,7 +46,7 @@ int device_toggle_display(volatile char* key_pressed, int key_code) {
     if (ui_get_showing_back_button()) {
         return get_allow_toggle_display() && (key_code == KEY_MENU || key_code == KEY_END);
     }
-    return get_allow_toggle_display() && (key_code == KEY_MENU || key_code == KEY_POWER || key_code == KEY_END);
+    return get_allow_toggle_display() && (key_code == KEY_POWER || key_code == KEY_END);
 }
 
 int device_reboot_now(volatile char* key_pressed, int key_code) {
@@ -55,27 +55,20 @@ int device_reboot_now(volatile char* key_pressed, int key_code) {
 
 int device_handle_key(int key_code, int visible) {
     if (visible) {
-        switch (key_code) {
+    switch (key_code) {
             case KEY_CAPSLOCK:
             case KEY_DOWN:
-            case KEY_VOLUMEUP:
-                return HIGHLIGHT_UP;
+            case KEY_VOLUMEDOWN:
+            case KEY_MENU:
+                return HIGHLIGHT_DOWN;
 
             case KEY_LEFTSHIFT:
             case KEY_UP:
-            case KEY_VOLUMEDOWN:
-                return HIGHLIGHT_DOWN;
+            case KEY_VOLUMEUP:
+                return HIGHLIGHT_UP;
 
-            case 62:
-		return SELECT_ITEM;
-
+            case KEY_HOME:
             case KEY_POWER:
-                if (ui_get_showing_back_button()) {
-                    return SELECT_ITEM;
-                }
-                if (!get_allow_toggle_display())
-                    return GO_BACK;
-                break;
             case KEY_LEFTBRACE:
             case KEY_ENTER:
             case BTN_MOUSE:
@@ -83,14 +76,13 @@ int device_handle_key(int key_code, int visible) {
             case KEY_CAMERA:
             case KEY_F21:
             case KEY_SEND:
-	    case KEY_HOME:
+            case KEY_SEARCH:
                 return SELECT_ITEM;
             
             case KEY_END:
             case KEY_BACKSPACE:
             case KEY_BACK:
-                if (!get_allow_toggle_display())
-                    return GO_BACK;
+                return GO_BACK;
         }
     }
 
