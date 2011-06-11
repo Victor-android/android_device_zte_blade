@@ -130,6 +130,11 @@ PRODUCT_COPY_FILES += \
     device/zte/blade/firmware/athwlan.bin.z77:system/wifi/athwlan.bin.z77 \
     device/zte/blade/firmware/athtcmd_ram.bin:system/wifi/athtcmd_ram.bin
 
+#Media profile
+PRODUCT_COPY_FILES += \
+    device/zte/blade/media_profiles.xml:system/etc/media_profiles.xml
+
+
 PRODUCT_PROPERTY_OVERRIDES := \
     keyguard.no_require_sim=true \
     ro.com.android.dateformat=dd-MM-yyyy \

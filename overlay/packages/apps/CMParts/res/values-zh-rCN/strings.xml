@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Generic -->
     <string name="app_name">CM 设置</string>
 
@@ -90,8 +90,8 @@
 
     <!-- User interface: Status bar tweaks -->
     <string name="ui_status_bar_title">状态栏调整</string>
-    <string name="ui_status_bar_am_pm_title">AM/PM样式</string>
-    <string name="ui_status_bar_am_pm_summary">选择AM/PM时钟的样式</string>
+    <string name="ui_status_bar_am_pm_title">上午/下午样式</string>
+    <string name="ui_status_bar_am_pm_summary">选择上午/下午的样式</string>
     <string name="ui_status_bar_clock_title">显示时钟</string>
     <string name="ui_status_bar_clock_summary">如果禁用，状态栏中的时钟将不会显示</string>
     <string name="ui_status_bar_cm_battery_title">电量百分比</string>
@@ -100,6 +100,7 @@
     <string name="ui_status_bar_compact_carrier_summary">在通知栏下拉布局中缩小显示运营商，这样电源控件看起来更好.</string>
     <string name="ui_status_bar_toggle_brightness">通知栏亮度控制</string>
     <string name="ui_status_bar_toggle_brightness_summary">允许在通知栏上滑动来调整亮度</string>
+    <string name="ui_status_bar_toggle_info">自动亮度已开启</string>
     <!-- User interface : LED Notifications -->
     <string name="trackball_title">LED 通知</string>
     <string name="trackball_summary">控制轨迹球和 LED 通知的颜色和闪烁频率</string>
@@ -525,7 +526,6 @@
     <string name="gestures_button_add">添加手势</string>
     <string name="gestures_button_discard">舍弃</string>
     <string name="gestures_button_done">完成</string>
-    <string name="gestures_shortcut_picker_button_label">为这个手势选择一个快捷方式或活动</string>
     <string name="gestures_error_missing_shortcut">您必需为这个手势选择一个动作！</string>
     <string name="gestures_save_success">手势保存到 %s</string>
     <string name="gestures_cancel_action">取消</string>
@@ -537,11 +537,15 @@
     <string name="gestures_error_loading">手势文件操作发生问题。</string>
     <string name="gestures_unlock_only">解锁手机</string>
     <string name="gestures_toggle_sound">切换声音</string>
+    <string name="gestures_shortcut_or_activity">快捷方式或动作</string>
     <string name="gestures_flashlight">手电筒</string>
     <string name="pref_lockscreen_disable_unlock_tab">禁用解锁滑块</string>
     <string name="pref_lockscreen_disable_unlock_tab_summary">注意：在此选项可用前您需要启用轨迹球、菜单键或手势解锁</string>
-    <string name="gestures_explain_create_screen">选择一个动作来执行(或选择解锁或声音)并在屏幕上画一个手势。</string>
+    <string name="gestures_action_label">动作：</string>
+    <string name="gestures_draw_label">手势：</string>
+    <string name="gestures_draw_for_label">“<xliff:g id="action">%s</xliff:g>”的手势：</string>
     <string name="gestures_already_present">警告：一个相似的手势会关联到另一个动作！</string>
+    <string name="gestures_run_in_background">在后台运行</string>
 
     <!-- Change Log strings -->
     <string name="changelog_title">查看更新日志</string>

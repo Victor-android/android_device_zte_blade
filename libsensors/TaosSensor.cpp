@@ -95,7 +95,7 @@ int TaosSensor::enable(int32_t handle, int en) {
         }
         int cmd;
 
-	if (newState  && !(mEnabled & (1<<what))) {
+	if (newState  && !(mEnabled & (1<<what)) && !(mEnabled & (1<<Proximity))) {
 	     switch (what) {
 	           case Proximity: 
 		     LOGD_IF(DEBUG,"PROX ON");

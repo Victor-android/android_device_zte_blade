@@ -199,7 +199,8 @@
     <string name="pref_summary_mms_auto_retrieval" msgid="925163257363757048">"自动检索信息"</string>
     <string name="pref_title_mms_retrieval_during_roaming" msgid="6016227402731817804">"漫游时自动检索"</string>
     <string name="pref_summary_mms_retrieval_during_roaming" msgid="2427892806582531020">"漫游时自动检索信息"</string>
-    <string name="pref_title_save_location">附件保存文件夹</string>
+    <string name="pref_title_save_location">附件保存位置</string>
+    <string name="pref_summary_save_location">设置保存附件的文件夹位置</string>
     <string name="to_label" msgid="2355268818058389047">"接收者 "</string>
     <string name="confirm_dialog_title" msgid="5810813994465120375">"删除"</string>
     <string name="confirm_dialog_locked_title" msgid="8179085718150932242">"是否删除锁定的讯息？"</string>

@@ -23,7 +23,7 @@
     <string name="pref_bassboost_title">低音强化</string>
     <string name="pref_bassboost_summary_on">启动低音强化</string>
     <string name="pref_bassboost_summary_off">禁用低音强化</string>
-    <string name="pref_bassboost_enable">使用低音強化</string>
+    <string name="pref_bassboost_enable">使用低音强化</string>
     <string name="pref_headset_virtual_title">耳机虚拟空间效果</string>
     <string name="pref_headset_virtual_summary_on">启用耳机虚拟空间</string>
     <string name="pref_headset_virtual_summary_off">禁用耳机虚拟空间</string>

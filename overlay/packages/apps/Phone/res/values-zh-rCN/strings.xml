@@ -223,7 +223,7 @@
     <string name="roaming_disable" msgid="1843417228755568110">"漫游时连接到数据服务"</string>
     <string name="roaming_reenable_message" msgid="6973894869473170666">"数据连接已断，因为您已离开本地网络并已关闭数据漫游。"</string>
     <string name="roaming_warning" msgid="7820963598559553967">"是否允许数据漫游？这可能产生大量漫游费！"</string>
-    <string name="mvno_roaming">国内数据漫游</string>
+    <string name="mvno_roaming">国际数据漫游</string>
     <string name="mvno_roaming_summary">这允许你在国内使用其他国家的电信服务</string>
     <string name="mvno_roaming_warning">要允许在国内使用其他国家的电信服务吗？某些电信运营商会用到这个设定来获取资料。如果你的电信运营商会向你收取费用就“不要”启用这个选项！这个设定需要你重新连接到网络才会生效。</string>
     <string name="gsm_umts_options" msgid="6538311689850981686">"GSM/UMTS 选项"</string>

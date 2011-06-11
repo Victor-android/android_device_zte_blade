@@ -134,7 +134,7 @@ int sensors_poll_context_t::pollEvents(sensors_event_t* data, int count)
         // see if we have some leftover from the last poll()
         for (int i=0 ; count && i<numSensorDrivers ; i++) {
             SensorBase* const sensor(mSensors[i]);
-            if ((mPollFds[i].revents & POLLIN) ){//|| (sensor->hasPendingEvents())) {
+            if ((mPollFds[i].revents & POLLIN) || (sensor->hasPendingEvents())) {
                 int nb = sensor->readEvents(data, count);
                 if (nb < count) {
                     // no more data for this sensor
