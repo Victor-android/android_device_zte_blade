@@ -18,20 +18,15 @@ SDSWAP="mmcblk0p3"
 fi
 
 # MOUNT SD-EXT
-if [ -e /dev/block/$SDEXT -a -e /system/etc/.nomount -a ! -e /dev/block/$SDSWAP ]
-then
-if [ $SWAPADD = "/sd-ext" ]
+if [ -e /dev/block/$SDEXT -a -e /system/etc/.nomount ]
 then
 mount -t ext4 /dev/block/$SDEXT /sd-ext
-busybox touch /sd-ext/test
-if [ -e /sd-ext/test ]
+if [ -s /sd-ext ]
 then
 busybox rm -f /system/etc/.nomount
-busybox rm -f /sd-ext/test
 echo Mount SD-ext... >> /system/log.txt
 echo 已开启SD-EXT分区和增强功能，再运行此命令即可使用增强功能
 exit
-fi
 fi
 fi
 
@@ -66,7 +61,7 @@ then
       fi
     else
     # sd-ext is mount
-      if [ -s /sd-ext ]
+      if [ -s $SWAPADD ]
       then
       dd if=/dev/zero of=$SWAPADD/swap.file bs=1048576 count=$SWAPSIZE
       busybox mkswap $SWAPADD/swap.file 1>/dev/null

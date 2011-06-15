@@ -3,4 +3,5 @@
 <string name="app_name">CM壁纸</string>
 <string name="app_label">CM壁纸</string>
 <string name="set_wallpaper">设置壁纸</string>
+<string name="no_wallpaper">不设壁纸</string>
 </resources>

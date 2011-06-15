@@ -83,10 +83,11 @@
     <string name="tablet_soft_buttons_back_title">返回</string>
     <string name="tablet_soft_buttons_search_title">搜索</string>
     <string name="tablet_soft_buttons_quick_na_title">快捷通知</string>
-
-    <!-- User interface : 180 degree rotation -->
-    <string name="pref_rotate_180_title">旋转 180 度</string>
-    <string name="pref_rotate_180_summary">当自动转屏激活时允许 180 度旋转</string>
+    <!-- User interface : Rotation -->
+    <string name="rotation_category_title">自动旋转允许角度</string>
+    <string name="pref_rotation_90_title">90 度</string>
+    <string name="pref_rotation_180_title">180 度</string>
+    <string name="pref_rotation_270_title">270 度</string>
 
     <!-- User interface: Status bar tweaks -->
     <string name="ui_status_bar_title">状态栏调整</string>

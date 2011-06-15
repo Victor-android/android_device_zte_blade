@@ -21,11 +21,9 @@ then
   if [ -e /dev/block/$SDEXT -a -e /system/etc/.nomount ]
   then
   mount -t ext4 /dev/block/$SDEXT /sd-ext
-  busybox touch /sd-ext/test
   if [ -e /sd-ext/test ]
   then
   busybox rm -f /system/etc/.nomount
-  busybox rm -f /sd-ext/test
   echo Mount SD-ext... >> /system/log.txt
   echo 已开启SD-EXT分区和增强功能，再运行此命令即可使用增强功能
   exit

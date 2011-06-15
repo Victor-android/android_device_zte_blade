@@ -16,7 +16,15 @@
                 <item>顶部点状指示器</item>
                 <item>顶部滑动指示器</item>
                 <item>底部滑动指示器</item>
-       </string-array>				
+       </string-array>
+      <string-array name="desktop_transition_entries">
+                <item>正常</item>
+                <item>旋转</item>
+                <item>翻页</item>
+                <item>立方</item>
+                <item>散开</item>
+       </string-array>
+				
 	   <string-array name="home_orientation_entries">
                 <item>自动</item>
                 <item>竖屏</item>
